@@ -30,9 +30,43 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
+    currentPlayers = request.json['currentPlayers'];
     request.get_data()
     logger.info(request.json)
+    currentX = request.json["https://cloud-run-hackathon-python-qqzvxlxlfq-uc.a.run.app"].x;
+    currentY = request.json["https://cloud-run-hackathon-python-qqzvxlxlfq-uc.a.run.app"].y;
+    currentDirection = request.json["https://cloud-run-hackathon-python-qqzvxlxlfq-uc.a.run.app"].direction;
+    moveNeeded = True;
+    if (currentDirection != "W" and currentX != 0):
+        print("turn left for X");
+        moveNeeded = False;
+        move = "L";
+    elif (currentX != 0 and moveNeeded):
+        print("move forward for x");
+        moveNeeded = False;
+        move = "F";
+    elif (currentDirection != "N" and currentY != 0 and moveNeeded):
+        print("face up for y");
+        moveNeeded = False;
+        move = "T";
+    elif (currentY != 0 and moveNeeded):
+        print("move forward for y");
+        moveNeeded = False;
+        move = "F";
+    elif (currentDirection != "E" and currentDirection != "S" and moveNeeded):
+        moveNeeded = True;
+        print("face east");
+        move = "R";
+    elif (currentDirection == "E"):
+        moveNeeded = True;
+        print("check other players");
+        move = "F";
+    elif (currentDirection == "S"):
+        moveNeeded = True;
+        print("check other players");
+        move = "F";
     return moves[random.randrange(len(moves))]
+
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
