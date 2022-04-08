@@ -30,7 +30,7 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    currentPlayers = request.json['currentPlayers'];
+    currentPlayers = request.json["https://cloud-run-hackathon-python-qqzvxlxlfq-uc.a.run.app"].get("players");
     request.get_data()
     logger.info(request.json)
     currentX = request.json["https://cloud-run-hackathon-python-qqzvxlxlfq-uc.a.run.app"].x;
