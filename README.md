@@ -8,7 +8,7 @@ guide how to set this up [here](https://docs.python.org/3/library/venv.html)
 
 Run Locally (Dev):
 
-```python
+```Python
 pip3 install -r requirements.txt
 python3 main.py
 ```
